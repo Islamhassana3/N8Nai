@@ -2,7 +2,7 @@ build:
   builder: nixpacks
   buildCommand: pnpm install --frozen-lockfile && pnpm build:deploy
 deploy:
-  startCommand: cd packages/cli/bin && ./n8n
+  startCommand: pnpm start:railway
   healthcheckPath: /healthz
   healthcheckTimeout: 100
   restartPolicyType: never

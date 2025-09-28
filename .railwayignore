@@ -1,0 +1,26 @@
+# Prevent Railway from auto-detecting services from monorepo packages
+# Only the root service should be deployed
+
+# Ignore all packages subdirectories to prevent service auto-detection
+packages/*/
+packages/@n8n/*/
+
+# Ignore specific directories that contain package.json files
+.github/
+docker/
+cypress/
+scripts/
+
+# Ignore template files
+packages/@n8n/node-cli/src/template/
+
+# Keep essential files needed for the main service
+!package.json
+!pnpm-workspace.yaml
+!pnpm-lock.yaml
+!railway.json
+!railway.toml  
+!railway.yaml
+!nixpacks.toml
+!Procfile
+!scripts/

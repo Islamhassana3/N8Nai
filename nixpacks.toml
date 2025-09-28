@@ -14,7 +14,7 @@ cmds = [
 ]
 
 [start]
-cmd = 'cd packages/cli/bin && ./n8n'
+cmd = 'pnpm start:railway'
 
 [variables]
 NODE_ENV = 'production'
@@ -24,15 +24,5 @@ N8N_PROTOCOL = 'https'
 WEBHOOK_URL = 'https://$RAILWAY_STATIC_URL/'
 
 # Prevent Railway from detecting other services
-[phases.setup.onlyIncludeFiles]
-include = [
-    "packages/cli/**",
-    "packages/core/**", 
-    "packages/workflow/**",
-    "packages/@n8n/**",
-    "packages/nodes-base/**",
-    "package.json",
-    "pnpm-workspace.yaml",
-    "pnpm-lock.yaml",
-    "scripts/**"
-]
+[nixpacks]
+name = "n8n"
