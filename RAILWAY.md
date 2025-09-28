@@ -17,6 +17,9 @@ The screenshot shows Railway detecting 20+ services instead of one. This happens
 2. Connect it to your GitHub repository
 3. Set the **Root Directory** to `.` (repository root)
 4. Railway will use the `railway.json` configuration automatically
+5. The `.railwayignore` file prevents detection of multiple services
+
+**The `.railwayignore` file is key** - it excludes all `packages/*/` directories so Railway won't scan the 52+ package.json files and create hundreds of services.
 
 #### Method B: Railway Template
 1. Create a Railway template using the `railway.json` configuration
@@ -31,7 +34,8 @@ railway up
 
 ## Configuration Files
 
-- **`railway.json`** - Primary configuration (most important)
+- **`.railwayignore`** - **MOST IMPORTANT** - Prevents auto-detection of multiple services
+- **`railway.json`** - Primary configuration 
 - **`railway.toml`** - Alternative TOML format
 - **`nixpacks.toml`** - Explicit build configuration
 - **`Procfile`** - Simple fallback process definition
@@ -42,11 +46,12 @@ railway up
 - Main n8n app
 - Editor UI  
 - Node dev tools
-- Various workspace packages
+- Various workspace packages (52+ package.json files)
 - Extensions and testing packages
 
 **Solution**: 
-- `railway.json` explicitly defines build and start commands for ONE service
+- **`.railwayignore`** prevents Railway from scanning packages/* directories for services
+- `railway.json` explicitly defines build and start commands for ONE service named "n8n"
 - `railway.toml` provides TOML configuration alternative
 - `nixpacks.toml` provides explicit build instructions
 - `Procfile` defines the web process
@@ -72,16 +77,18 @@ Railway will automatically set these from the configuration:
 
 If you still see multiple services being created:
 
-1. **Delete all auto-detected services** in Railway dashboard
-2. **Create a new service manually**:
+1. **Check .railwayignore exists** - This file should exclude packages/ directories  
+2. **Delete all auto-detected services** in Railway dashboard
+3. **Create a new service manually**:
    - Go to your Railway project
    - Click "New Service"  
    - Select "GitHub Repo"
    - Choose your repository
    - Set Root Directory to `.` (repository root)
-   - Railway will use the `railway.json` configuration
+   - Ensure `.railwayignore` is in your repo root
+   - Railway will use the `railway.json` configuration and ignore monorepo packages
 
-3. **Alternative: Use Railway CLI**:
+4. **Alternative: Use Railway CLI**:
    ```bash
    npm install -g @railway/cli
    railway login
@@ -90,9 +97,17 @@ If you still see multiple services being created:
    ```
 
 4. **If services keep auto-detecting**:
-   - Fork the repository
-   - Remove unnecessary `package.json` files from packages you don't need
-   - Or set up a Railway template instead of direct GitHub connection
+   - Verify `.railwayignore` is properly configured
+   - Check that your Railway service uses this repository directly (not a fork that's missing the ignore file)
+   - Alternative: Use Railway template deployment
+
+## Key Files Added to Fix Multiple Services
+
+This repository now includes:
+- **`.railwayignore`** - Excludes all 52+ package.json files from service detection
+- Updated Railway configs with consistent service naming and commands
+
+The root cause was Railway detecting each of the 52 package.json files (across packages, templates, tests) as separate potential services, creating 800+ services instead of 1.
 
 ## Railway Template Creation
 
