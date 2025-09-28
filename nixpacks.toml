@@ -5,15 +5,34 @@ aptPkgs = ['git', 'ca-certificates', 'curl']
 [phases.install]
 cmds = [
     'npm install -g pnpm@10.16.1',
-    'pnpm install --frozen-lockfile'
+    'pnpm install --frozen-lockfile --ignore-scripts'
 ]
 
 [phases.build]
-cmds = ['pnpm build:deploy']
+cmds = [
+    'pnpm build:deploy'
+]
 
 [start]
 cmd = 'cd packages/cli/bin && ./n8n'
 
 [variables]
 NODE_ENV = 'production'
-NODE_ICU_DATA = '/usr/local/lib/node_modules/full-icu'
+N8N_HOST = '0.0.0.0'
+N8N_PORT = '$PORT'
+N8N_PROTOCOL = 'https'
+WEBHOOK_URL = 'https://$RAILWAY_STATIC_URL/'
+
+# Prevent Railway from detecting other services
+[phases.setup.onlyIncludeFiles]
+include = [
+    "packages/cli/**",
+    "packages/core/**", 
+    "packages/workflow/**",
+    "packages/@n8n/**",
+    "packages/nodes-base/**",
+    "package.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    "scripts/**"
+]

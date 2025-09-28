@@ -1,1 +1,1 @@
-web: cd packages/cli/bin && ./n8n
+web: pnpm start:railway

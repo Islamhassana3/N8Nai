@@ -1,0 +1,5 @@
+{
+  "services": ["n8n"],
+  "buildCommand": "pnpm install --frozen-lockfile && pnpm build:deploy",
+  "startCommand": "cd packages/cli/bin && ./n8n"
+}
