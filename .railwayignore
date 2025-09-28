@@ -1,0 +1,62 @@
+# Ignore specific packages that should not be separate services
+packages/node-dev/
+packages/frontend/
+packages/testing/
+packages/extensions/
+cypress/
+
+# Keep essential packages for the main n8n service
+# packages/cli/ - main application
+# packages/core/ - workflow engine  
+# packages/workflow/ - workflow types
+# packages/@n8n/ - shared libraries
+# packages/nodes-base/ - built-in nodes
+
+# Development and testing
+cypress/
+.github/
+.vscode/
+.devcontainer/
+scripts/
+patches/
+
+# Build artifacts
+dist/
+build/
+compiled/
+.turbo/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Development files
+*.test.ts
+*.test.js
+__tests__/
+test/
+*.spec.ts
+*.spec.js
+
+# Documentation
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+*.md
+
+# Linting and formatting
+.eslintrc*
+.prettierrc*
+biome.jsonc
+lefthook.yml
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+[phases.setup]
+nixpkgs = ['nodejs_20', 'python3']
+aptPkgs = ['git', 'ca-certificates', 'curl']
+
+[phases.install]
+cmds = [
+    'npm install -g pnpm@10.16.1',
+    'pnpm install --frozen-lockfile'
+]
+
+[phases.build]
+cmds = ['pnpm build:deploy']
+
+[start]
+cmd = 'cd packages/cli/bin && ./n8n'
+
+[variables]
+NODE_ENV = 'production'
+NODE_ICU_DATA = '/usr/local/lib/node_modules/full-icu'

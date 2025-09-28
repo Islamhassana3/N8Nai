@@ -1,0 +1,8 @@
+build:
+  builder: nixpacks
+  buildCommand: pnpm install && pnpm build:deploy
+deploy:
+  startCommand: cd packages/cli/bin && ./n8n
+  healthcheckPath: /healthz
+  healthcheckTimeout: 100
+  restartPolicyType: never
