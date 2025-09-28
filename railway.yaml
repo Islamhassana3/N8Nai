@@ -1,0 +1,12 @@
+build:
+  builder: nixpacks
+  buildCommand: pnpm install --frozen-lockfile && pnpm build:deploy
+deploy:
+  startCommand: cd packages/cli/bin && ./n8n
+  healthcheckPath: /healthz
+  healthcheckTimeout: 100
+  restartPolicyType: never
+variables:
+  NODE_ENV: production
+  N8N_HOST: 0.0.0.0
+  N8N_PORT: $PORT
