@@ -26,6 +26,12 @@ N8N_PROTOCOL=https
 N8N_EDITOR_BASE_URL=https://$RAILWAY_STATIC_URL/
 ```
 
+### Option 3: Quick Deploy Button
+Add this markdown to your README for a one-click deploy:
+```markdown
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/n8n?referralCode=alphasec)
+```
+
 ## What These Files Solve
 
 **Problem**: Railway auto-detects multiple services from the monorepo structure, creating services for:
