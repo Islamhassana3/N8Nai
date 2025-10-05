@@ -2,6 +2,32 @@
 
 # n8n - Secure Workflow Automation for Technical Teams
 
+## 🚀 Quick Preview
+
+[![Launch Preview](https://img.shields.io/badge/🚀_Launch_Preview-localhost:8080-blue?style=for-the-badge)](http://localhost:8080)
+[![Preview Guide](https://img.shields.io/badge/📖_Preview_Guide-Instructions-green?style=for-the-badge)](#quick-preview)
+
+**Start the development preview instantly:**
+
+**Linux/Mac:**
+```bash
+./preview.sh
+```
+
+**Windows:**
+```cmd
+preview.bat
+```
+
+**Manual Start:**
+```bash
+cd packages/frontend/editor-ui
+pnpm install  # Only needed first time
+pnpm dev
+```
+
+The preview will automatically open at http://localhost:8080 in your default browser.
+
 n8n is a workflow automation platform that gives technical teams the flexibility of code with the speed of no-code. With 400+ integrations, native AI capabilities, and a fair-code license, n8n lets you build powerful automations while maintaining full control over your data and deployments.
 
 ![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-screenshot-readme.png)
